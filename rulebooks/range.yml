@@ -1,0 +1,13 @@
+---
+- name: Invoke ping playbook several times
+  hosts: all
+  sources:
+    - eda.builtin.range:
+        limit: 3
+  rules:
+    - name: Invoke ping playbook
+      condition: true
+      action:
+        run_job_template:
+          name: ping
+          organization: Default
