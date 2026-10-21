@@ -1,0 +1,14 @@
+---
+- name: Execute a playbook
+  hosts: all
+  sources:
+    - eda.builtin.range:
+        limit: 1
+  rules:
+    - name: Invoke ping playbook
+      condition: true
+      action:
+        # this action will fail if executed through AAP
+        # see: https://access.redhat.com/solutions/7024714
+        run_playbook:
+          name: ping.yml
