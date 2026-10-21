@@ -1,0 +1,13 @@
+---
+- name: Print received event
+  hosts: localhost
+  sources:
+    - eda.builtin.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: Print received event
+      condition: true
+      action:
+        debug:
+          msg: "{{ event.payload }}"
